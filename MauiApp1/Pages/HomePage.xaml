@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:a="clr-namespace:MauiApp1"
+             xmlns:v="clr-namespace:MauiApp1.Pages.Views"
+             xmlns:pages="clr-namespace:MauiApp1.Pages"
+             xmlns:m="clr-namespace:MauiApp1.Models"
+             xmlns:l="clr-namespace:CustomLayouts"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             x:DataType="pages:HomeViewModel"
+             x:Class="MauiApp1.Pages.HomePage"
+             Shell.NavBarIsVisible="False"
+             Title="HomePage">
+
+    <ContentPage.BindingContext>
+        <pages:HomeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Preferences"
+                            ParentChanged="MenuFlyoutItem_ParentChanged"
+                            Command="{Binding PreferencesCommand}" />
+        </MenuBarItem>
+        <MenuBarItem Text="Products">
+            <MenuFlyoutItem Text="Add Product" Command="{Binding AddProductCommand}"
+                            ParentChanged="MenuFlyoutItem_ParentChanged"/>
+            <MenuFlyoutItem Text="Add Product Category"/>
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+
+    <Grid RowDefinitions="60,20,*"
+          ColumnDefinitions="*,320"          Margin="24,24,0,0"
+          x:Name="PageGrid">
+
+        
+
+        <ScrollView Grid.Row="2">
+            <Grid RowDefinitions="50,*">
+                <Label Text="Choose Table" Style="{StaticResource Title1}"/>
+
+                <l:HorizontalWrapLayout Grid.Row="1" Spacing="20"
+                                       BindableLayout.ItemsSource="{Binding Products}"
+                                       >
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="m:Item">
+                            <Grid RowDefinitions="30,80" WidthRequest="100">
+                                <Border Background="{StaticResource DarkBg2Brush}"
+                                        Stroke="{StaticResource DarkBg2Brush}"
+                                        StrokeThickness="1"
+                                        Grid.Row="1"
+                                        >
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="16"/>
+                                    </Border.StrokeShape>
+
+
+                                </Border>
+                                <VerticalStackLayout Grid.RowSpan="2" Margin="10,0,10,10"
+                                                     VerticalOptions="End"
+                                                     Spacing="6">
+                                    
+                                    <Label Text="{Binding Title}" HorizontalOptions="Center" TextColor="White" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
+                                    <!--<Label Text="{Binding Price, StringFormat='${0}'}" HorizontalOptions="Center"/>-->
+                                    <!--<Label Text="20 Bowls available" HorizontalOptions="Center" Style="{StaticResource Subhead}"/>-->
+                                </VerticalStackLayout>
+                                <Image
+                                    Grid.RowSpan="2" VerticalOptions="Start"
+                                    Source="logo.svg" HorizontalOptions="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                     </BindableLayout.ItemTemplate>
+                </l:HorizontalWrapLayout>
+                
+
+            </Grid>
+
+        </ScrollView>
+
+        <VerticalStackLayout VerticalOptions="Center">
+            <Label Text="Main Menu" Style="{StaticResource LargeTitle}"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
+        </VerticalStackLayout>
+
+        <!-- Tab Control -->
+        <Grid Grid.Row="1">
+            <BoxView Style="{StaticResource HRule}"
+                     Margin="0,10,0,0"
+                     VerticalOptions="Start"
+            />
+        </Grid>
+
+        <v:OrderCartView Grid.Column="1" Grid.RowSpan="3"/>
+        
+    </Grid>
+</ContentPage>

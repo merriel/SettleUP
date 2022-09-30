@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:views="clr-namespace:MauiApp1.Pages.Views"
+             xmlns:m="clr-namespace:MauiApp1.Models"
+             x:DataType="views:OrderCartViewModel"
+             x:Class="MauiApp1.Pages.Views.OrderCartView"
+             Background="{StaticResource DarkBg2Brush}">
+
+    <ContentView.BindingContext>
+        <views:OrderCartViewModel/>
+    </ContentView.BindingContext>
+
+    <Grid RowDefinitions="*,108">
+        <ScrollView>
+            <StackLayout>
+                <VerticalStackLayout Margin="24" Spacing="20">
+                    <Label 
+                    Text="Info Table"
+                    Style="{StaticResource Title1}" TextColor="White" />
+                    <HorizontalStackLayout Spacing="12">
+                        <HorizontalStackLayout.Resources>
+
+                            <Style TargetType="RadioButton">
+                                <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadioTemplate}"/>
+                            </Style>
+
+                        </HorizontalStackLayout.Resources>
+                        <RadioButton Content="Dine In" IsChecked="True"/>
+                        <RadioButton Content="Carry Out"/>
+                        <RadioButton Content="Delivery"/>
+                    </HorizontalStackLayout>
+
+                    <BoxView Style="{StaticResource HRule}"/>
+
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnDefinitions="60*,20*,20*">
+                            <HorizontalStackLayout Spacing="8">
+                                <Image WidthRequest="40" HeightRequest="40"
+                                           Aspect="AspectFit"
+                                           Source="logo.svg"/>
+
+                                <Label Style="{StaticResource Headline}" VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Table 1" TextColor="{StaticResource TextSecondary}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </HorizontalStackLayout>
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+                <Grid ColumnDefinitions="1*,*" RowDefinitions="40,40,40,80" Margin="20,0,20,10"  >
+                    <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Name / Member " TextColor="{StaticResource TextSecondary}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="0" Margin="2">
+                        <Entry Style="{StaticResource Headline}"  VerticalOptions="Center" Keyboard="Text" />
+                    </Frame>
+
+
+                    <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="1">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Person " TextColor="{StaticResource TextSecondary}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="1" Margin="2">
+                        <Entry Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Numeric" />
+                    </Frame>
+
+                    <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="2">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Phone" TextColor="{StaticResource TextSecondary}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="2" Margin="2">
+                        <Entry Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Telephone" />
+                    </Frame>
+
+                    <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="3">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Address " TextColor="{StaticResource TextSecondary}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="3" Margin="2">
+                        <Entry Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Text" />
+                    </Frame>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+        <Button Text="Place Order" HorizontalOptions="Fill" Margin="24" Grid.Row="1"
+                Command="{Binding PlaceOrderCommand}"/>
+            
+    </Grid>
+</ContentView>
+

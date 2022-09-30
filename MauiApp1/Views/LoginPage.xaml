@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.LoginPage"
+             Title="LoginPage"
+             NavigationPage.HasNavigationBar="False"
+            >
+    <ScrollView  BackgroundColor="{StaticResource DarkBg1}">
+        <Frame CornerRadius="20" HasShadow="True" BackgroundColor="White" Margin="100,40,100,40">
+            <Grid Margin="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="untitled4.png" Aspect="AspectFit" HeightRequest="100" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <VerticalStackLayout Grid.Row="1" Spacing="10">
+
+                    <Label Text="Log In To SettleUP" FontSize="20" TextColor="Black" FontAttributes="Bold" Margin="0,20,0,20"
+                   HorizontalOptions="Center"/>
+                    
+                    <Entry Placeholder="ID Number" Keyboard="Numeric" BackgroundColor="WhiteSmoke" HorizontalTextAlignment="Center"/>
+
+                    <Button Text="Log In" BackgroundColor="{StaticResource Primary}" HorizontalOptions="Center" Command="{Binding ICommandNavToHomePage}"/>
+
+                    
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </ScrollView>
+</ContentPage>
