@@ -5,5 +5,6 @@ public partial class OrderCartView : ContentView
 	public OrderCartView()
 	{
 		InitializeComponent();
-	}
+        BindingContext = new OrderCartViewModel(Navigation);
+    }
 }

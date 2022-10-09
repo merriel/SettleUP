@@ -8,10 +8,6 @@
              x:Class="MauiApp1.Pages.Views.OrderCartView"
              Background="{StaticResource DarkBg2Brush}">
 
-    <ContentView.BindingContext>
-        <views:OrderCartViewModel/>
-    </ContentView.BindingContext>
-
     <Grid RowDefinitions="*,108">
         <ScrollView>
             <StackLayout>

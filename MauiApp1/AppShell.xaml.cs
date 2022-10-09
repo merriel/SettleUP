@@ -7,7 +7,8 @@ public partial class AppShell : Shell
 	public AppShell()
 	{
 		InitializeComponent();
-        Login();
+       
+        
 
     }
 
@@ -18,7 +19,7 @@ public partial class AppShell : Shell
 
     private async void Login()
     {
-       await Navigation.PushAsync(new LoginPage());
+       await Navigation.PushAsync (new LoginPage());
         // await Shell.Current.Navigation.PushAsync(LoginPage);
     }
 
@@ -40,6 +41,7 @@ public partial class AppShell : Shell
 
     private async void Logout_Clicked(object sender, EventArgs e)
     {
+        Preferences.Default.Clear();
         await Navigation.PushAsync(new LoginPage());
     }
 }
