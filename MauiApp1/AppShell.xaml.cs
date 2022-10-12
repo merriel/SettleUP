@@ -8,7 +8,10 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
        
-        
+        if (!Preferences.ContainsKey("User_ID"))
+        {
+            Login();
+        }
 
     }
 

@@ -58,11 +58,15 @@
 
                                 </Border>
                                 <VerticalStackLayout Grid.RowSpan="2" Margin="10,0,10,10"
-                                                     VerticalOptions="End"
+                                                     VerticalOptions="End" 
                                                      Spacing="6">
-                                    
+
                                     <Label Text="{Binding Nomor}" HorizontalOptions="Center" TextColor="White" Style="{StaticResource Title2}" 
-                                           HorizontalTextAlignment="Center"/>
+                                           HorizontalTextAlignment="Center" >
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding Nomor}" Tapped="TapGestureRecognizer_Tapped" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
                                     <!--<Label Text="{Binding Price, StringFormat='${0}'}" HorizontalOptions="Center"/>-->
                                     <!--<Label Text="20 Bowls available" HorizontalOptions="Center" Style="{StaticResource Subhead}"/>-->
                                 </VerticalStackLayout>

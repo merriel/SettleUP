@@ -41,7 +41,7 @@
                                 <Label Style="{StaticResource Headline}" VerticalOptions="Center">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Table 1" TextColor="{StaticResource TextSecondary}"/>
+                                            <Span Text="{Binding Path=CommonData.Title}" TextColor="{StaticResource TextSecondary}"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

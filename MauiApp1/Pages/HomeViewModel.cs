@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Models;
+using MauiApp1.Pages.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MauiApp1.Pages;
 
@@ -14,10 +16,26 @@ public partial class HomeViewModel
 
     [ObservableProperty]
     ObservableCollection<Table> _meja;
-
+    public Commons CommonData { get; private set; }
     public HomeViewModel()
     {
         get_meja();
+        CommonData = Commons.GetInstance();
+    }
+
+    
+
+    private string myTable;
+    public string MyProperty //Bind to this in your View1
+    {
+        get
+        {
+            return myTable;
+        }
+        set
+        {
+            myTable = value;
+        }
     }
 
 
@@ -27,6 +45,8 @@ public partial class HomeViewModel
     {
         await Shell.Current.GoToAsync($"{nameof(SettingsPage)}?sub=appearance");
     }
+
+ 
 
     public async Task get_meja()
     {

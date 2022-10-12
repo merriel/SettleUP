@@ -2,12 +2,13 @@
 
 using CommunityToolkit.Mvvm.Messaging;
 using MauiApp1.Messages;
+using MauiApp1.Pages.Views;
+using MauiApp1.Services;
 
 namespace MauiApp1.Pages;
 
 public partial class HomePage : ContentPage
 {
-    
 
     public HomePage()
 	{
@@ -54,4 +55,11 @@ public partial class HomePage : ContentPage
 
         }
 	}
+
+	private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+	{
+        var labelroom = ((Label)sender).Text;
+		((HomeViewModel)this.BindingContext).CommonData.Title = labelroom;
+		
+    }
 }
