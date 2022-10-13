@@ -8,7 +8,10 @@
              x:Class="MauiApp1.Pages.Views.MasterItemView"
              Background="{StaticResource DarkBg2Brush}">
 
-    
+    <ContentView.BindingContext>
+        <views:MasterItemViewModel/>
+    </ContentView.BindingContext>
+
     <Grid RowDefinitions="*,108">
         <ScrollView>
             <VerticalStackLayout Margin="24" Spacing="20">
@@ -17,7 +20,7 @@
                     Style="{StaticResource Title1}" />
                 <HorizontalStackLayout Spacing="12">
                     <HorizontalStackLayout.Resources>
-                        
+
                         <Style TargetType="RadioButton">
                             <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadioTemplate}"/>
                         </Style>
@@ -29,11 +32,11 @@
                 </HorizontalStackLayout>
 
                 <Grid ColumnDefinitions="60*,20*,20*">
-                        <Label Text="Item" Style="{StaticResource Headline}"/>
-                        <Label Text="Qty" Style="{StaticResource Headline}" Grid.Column="1"/>
-                        <Label Text="Price" Style="{StaticResource Headline}" Grid.Column="2"/>
-                    </Grid>
-                    <BoxView Style="{StaticResource HRule}"/>
+                    <Label Text="Item" Style="{StaticResource Headline}"/>
+                    <Label Text="Qty" Style="{StaticResource Headline}" Grid.Column="1"/>
+                    <Label Text="Price" Style="{StaticResource Headline}" Grid.Column="2"/>
+                </Grid>
+                <BoxView Style="{StaticResource HRule}"/>
 
                 <VerticalStackLayout Spacing="12"
                                      BindableLayout.ItemsSource="{Binding Order.Items}">
@@ -74,7 +77,7 @@
                                            Background="Transparent" TextColor="White"
                                            HorizontalOptions="Center" VerticalOptions="Center"
                                     />
-                                        
+
                                 </Border>
                                 <Label Text="{Binding SubTotal, StringFormat='${0}'}"
                                        Grid.Column="2"
@@ -84,14 +87,14 @@
 
                     </BindableLayout.ItemTemplate>
 
-                
+
 
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
         <Button Text="Place Order" HorizontalOptions="Fill" Margin="24" Grid.Row="1"
                 Command="{Binding PlaceOrderCommand}"/>
-            
+
     </Grid>
 </ContentView>
 

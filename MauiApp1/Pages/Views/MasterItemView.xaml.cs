@@ -5,5 +5,5 @@ public partial class MasterItemView : ContentView
 	public MasterItemView()
 	{
 		InitializeComponent();
-	}
+    }
 }

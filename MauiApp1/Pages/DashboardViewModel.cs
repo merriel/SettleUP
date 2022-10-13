@@ -16,13 +16,20 @@ public partial class DashboardViewModel
     [ObservableProperty]
     string category = ItemCategory.Noodles.ToString();
 
-    partial void OnCategoryChanged(string value)
+    partial void OnCategoryChanged(string cat)
     {
-        ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), value);
+        ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), cat);
         _products = new ObservableCollection<Item>(
             AppData.Items.Where(x => x.Category == category).ToList()
         );
         OnPropertyChanged(nameof(Products));
+    }
+
+    public DashboardViewModel()
+    {
+        _products = new ObservableCollection<Item>(
+            AppData.Items.Where(x => x.Category == ItemCategory.Noodles).ToList()
+        );
     }
 
     [RelayCommand]

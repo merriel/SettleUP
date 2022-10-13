@@ -2,8 +2,10 @@
 
 using CommunityToolkit.Mvvm.Messaging;
 using MauiApp1.Messages;
+using MauiApp1.Models;
 using MauiApp1.Pages.Views;
 using MauiApp1.Services;
+using Microsoft.VisualBasic;
 
 namespace MauiApp1.Pages;
 
@@ -60,6 +62,11 @@ public partial class HomePage : ContentPage
 	{
         var labelroom = ((Label)sender).Text;
 		((HomeViewModel)this.BindingContext).CommonData.Title = labelroom;
-		
+		var selected = ((HomeViewModel)this.BindingContext).Meja.Where(Table => Table.Nomor.Contains(labelroom));
+		foreach (Table table in selected)
+		{
+            ((HomeViewModel)this.BindingContext).CommonData.RoomSelected = table;
+        }
+        
     }
 }

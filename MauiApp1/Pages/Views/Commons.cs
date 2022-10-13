@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using MauiApp1.Models;
 using System.ComponentModel;
 
 namespace MauiApp1.Pages.Views;
@@ -30,6 +31,19 @@ public class Commons : INotifyPropertyChanged
                 return;
             _title = value;
             OnPropertyChanged("Title");
+        }
+    }
+
+    private Table roomselected;
+    public Table RoomSelected
+    {
+        get { return roomselected; }
+        set
+        {
+            if (roomselected== value)
+                return;
+            roomselected= value;
+            OnPropertyChanged("RoomSelected");
         }
     }
 

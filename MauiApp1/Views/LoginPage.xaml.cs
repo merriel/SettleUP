@@ -15,4 +15,9 @@ public partial class LoginPage : ContentPage
 
     
     protected override bool OnBackButtonPressed() { return true; }
+
+    private void Entry_Completed(object sender, EventArgs e)
+    {
+        ((LoginPageViewModel)this.BindingContext).OnLoginClicked(sender);
+    }
 }

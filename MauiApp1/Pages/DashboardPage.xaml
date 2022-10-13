@@ -62,8 +62,8 @@
                                                      VerticalOptions="End"
                                                      Spacing="6">
 
-                                    <Label Text="{Binding Title}" TextColor="White" HorizontalOptions="Center" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding Price, StringFormat='${0}'}" TextColor="White" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Title}" HorizontalOptions="Center" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding Price, StringFormat='${0}'}" HorizontalOptions="Center"/>
                                     <!--<Label Text="20 Bowls available" HorizontalOptions="Center" Style="{StaticResource Subhead}"/>-->
                                 </VerticalStackLayout>
                                 <Image
@@ -97,7 +97,10 @@
                 <RoundRectangle CornerRadius="8"/>
             </Border.StrokeShape>
             <HorizontalStackLayout>
-               
+                <Image Source="{FontImage Color=White, FontFamily=FontAwesome, Size=14}"
+                       Margin="14,0"
+                       VerticalOptions="Center"
+                       />
                 <Entry Background="Transparent"
                        Placeholder="Search for food, coffee, etc."
                        PlaceholderColor="{StaticResource TextSecondary}"

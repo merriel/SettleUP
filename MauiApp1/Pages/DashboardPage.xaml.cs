@@ -1,6 +1,8 @@
 ﻿
 using CommunityToolkit.Mvvm.Messaging;
 using MauiApp1.Messages;
+using MauiApp1.Models;
+using System.Collections.ObjectModel;
 
 namespace MauiApp1.Pages;
 
@@ -8,14 +10,11 @@ public partial class DashboardPage : ContentPage
 {
 
 
-    public DashboardPage()
+    public DashboardPage(ObservableCollection<Member> member)
     {
         InitializeComponent();
 
-        WeakReferenceMessenger.Default.Register<AddProductMessage>(this, (r, m) =>
-        {
-            NavSubContent(m.Value);
-        });
+       
     }
 
     void MenuFlyoutItem_ParentChanged(System.Object sender, System.EventArgs e)

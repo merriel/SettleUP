@@ -30,7 +30,7 @@ namespace MauiApp1
             }
         }
 
-        private async void OnLoginClicked(object obj)
+        public async void OnLoginClicked(object obj)
         {
             await LoginUserAsync(Value);
 

@@ -7,7 +7,7 @@
              x:DataType="views:OrderCartViewModel"
              x:Class="MauiApp1.Pages.Views.OrderCartView"
              Background="{StaticResource DarkBg2Brush}">
-
+ 
     <Grid RowDefinitions="*,108">
         <ScrollView>
             <StackLayout>
@@ -24,8 +24,7 @@
 
                         </HorizontalStackLayout.Resources>
                         <RadioButton Content="Dine In" IsChecked="True"/>
-                        <RadioButton Content="Carry Out"/>
-                        <RadioButton Content="Delivery"/>
+                        <RadioButton Content="Takeaway"/>
                     </HorizontalStackLayout>
 
                     <BoxView Style="{StaticResource HRule}"/>
@@ -50,7 +49,7 @@
                         </Grid>
                     </VerticalStackLayout>
                 </VerticalStackLayout>
-                <Grid ColumnDefinitions="1*,*" RowDefinitions="40,40,40,80" Margin="20,0,20,10"  >
+                <Grid ColumnDefinitions="1*,*" RowDefinitions="40,40,40,80" Margin="20,0,20,10" >
                     <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="0">
                         <Label.FormattedText>
                             <FormattedString>
@@ -60,7 +59,7 @@
                     </Label>
 
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="0" Margin="2">
-                        <Entry Style="{StaticResource Headline}"  VerticalOptions="Center" Keyboard="Text" />
+                        <Entry Text="{Binding Name_Member, Mode=TwoWay}" Style="{StaticResource Headline}"  VerticalOptions="Center" Keyboard="Text" />
                     </Frame>
 
 
@@ -73,7 +72,7 @@
                     </Label>
 
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="1" Margin="2">
-                        <Entry Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Numeric" />
+                        <Entry Text="{Binding Jml_Person, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Numeric" />
                     </Frame>
 
                     <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="2">
@@ -84,7 +83,7 @@
                         </Label.FormattedText>
                     </Label>
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="2" Margin="2">
-                        <Entry Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Telephone" />
+                        <Entry Text="{Binding Phone_Number, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Telephone" />
                     </Frame>
 
                     <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="3">
@@ -96,7 +95,7 @@
                     </Label>
 
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="3" Margin="2">
-                        <Entry Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Text" />
+                        <Entry Text="{Binding Address, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Text" />
                     </Frame>
                 </Grid>
             </StackLayout>
