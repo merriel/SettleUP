@@ -58,8 +58,8 @@
                         </Label.FormattedText>
                     </Label>
 
-                    <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="0" Margin="2">
-                        <Entry Text="{Binding Name_Member, Mode=TwoWay}" Style="{StaticResource Headline}"  VerticalOptions="Center" Keyboard="Text" />
+                    <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="0" Margin="2" >
+                        <Entry Margin="50,0,0,0" Text="{Binding Name_Member, Mode=TwoWay}" Style="{StaticResource Headline}"  VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Keyboard="Text" />
                     </Frame>
 
 
@@ -72,7 +72,7 @@
                     </Label>
 
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="1" Margin="2">
-                        <Entry Text="{Binding Jml_Person, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Numeric" />
+                        <Entry Margin="50,0,0,0" Text="{Binding Jml_Person, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Numeric" />
                     </Frame>
 
                     <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="2">
@@ -83,7 +83,7 @@
                         </Label.FormattedText>
                     </Label>
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="2" Margin="2">
-                        <Entry Text="{Binding Phone_Number, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Telephone" />
+                        <Entry Margin="50,0,0,0" Text="{Binding Phone_Number, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Telephone" />
                     </Frame>
 
                     <Label Style="{StaticResource Headline}" VerticalOptions="Center" Grid.Column="0" Grid.Row="3">
@@ -95,7 +95,7 @@
                     </Label>
 
                     <Frame CornerRadius="10" BackgroundColor="White" Grid.Column="1" Grid.Row="3" Margin="2">
-                        <Entry Text="{Binding Address, Mode=TwoWay}" Style="{StaticResource Headline}" VerticalOptions="Center" Keyboard="Text" />
+                        <Editor HeightRequest="80" HorizontalTextAlignment="Start" HorizontalOptions="Start" AutoSize="TextChanges" Text="{Binding Address, Mode=TwoWay}" Style="{StaticResource Headline}" Keyboard="Text" />
                     </Frame>
                 </Grid>
             </StackLayout>

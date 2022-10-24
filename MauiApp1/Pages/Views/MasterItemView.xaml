@@ -17,24 +17,13 @@
             <VerticalStackLayout Margin="24" Spacing="20">
                 <Label 
                     Text="Order #4773"
+                    TextColor="White"
                     Style="{StaticResource Title1}" />
-                <HorizontalStackLayout Spacing="12">
-                    <HorizontalStackLayout.Resources>
-
-                        <Style TargetType="RadioButton">
-                            <Setter Property="ControlTemplate" Value="{StaticResource ButtonRadioTemplate}"/>
-                        </Style>
-
-                    </HorizontalStackLayout.Resources>
-                    <RadioButton Content="Dine In" IsChecked="True"/>
-                    <RadioButton Content="Carry Out"/>
-                    <RadioButton Content="Delivery"/>
-                </HorizontalStackLayout>
 
                 <Grid ColumnDefinitions="60*,20*,20*">
-                    <Label Text="Item" Style="{StaticResource Headline}"/>
-                    <Label Text="Qty" Style="{StaticResource Headline}" Grid.Column="1"/>
-                    <Label Text="Price" Style="{StaticResource Headline}" Grid.Column="2"/>
+                    <Label Text="Item" Style="{StaticResource Headline}" TextColor="White"/>
+                    <Label Text="Qty" Style="{StaticResource Headline}" TextColor="White" Grid.Column="1"/>
+                    <Label Text="Price" Style="{StaticResource Headline}" TextColor="White" Grid.Column="2"/>
                 </Grid>
                 <BoxView Style="{StaticResource HRule}"/>
 
@@ -51,7 +40,7 @@
                                     <Label Style="{StaticResource Headline}">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Title}"/>
+                                                <Span Text="{Binding Title}" TextColor="White"/>
                                                 <Span Text="{x:Static system:Environment.NewLine}"/>
                                                 <Span TextColor="{StaticResource TextSecondary}" FontSize="12" Text="{Binding Price, StringFormat='${0}'}"/>
                                             </FormattedString>

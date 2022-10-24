@@ -10,6 +10,7 @@
              x:DataType="pages:DashboardViewModel"
              x:Class="MauiApp1.Pages.DashboardPage"
              Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Secondary}"
              Title="Dashboard">
 
     <ContentPage.BindingContext>
@@ -30,23 +31,24 @@
     </ContentPage.MenuBarItems>
 
 
-    <Grid RowDefinitions="100,70,*"
-          ColumnDefinitions="*,400"
+    <Grid RowDefinitions="100,50,*"
+          ColumnDefinitions="*,300"
           Margin="24,24,0,0"
+          BackgroundColor="{StaticResource Secondary}"
           x:Name="PageGrid">
 
 
 
         <ScrollView Grid.Row="2">
             <Grid RowDefinitions="70,*">
-                <Label Text="Choose Dishes" Style="{StaticResource Title1}"/>
+                <Label Text="Choose Dishes" Style="{StaticResource Title1}" TextColor="White"/>
 
                 <l:HorizontalWrapLayout Grid.Row="1" Spacing="20"
-                                       BindableLayout.ItemsSource="{Binding Products}"
+                                       BindableLayout.ItemsSource="{Binding Barang}"
                                        >
                     <BindableLayout.ItemTemplate>
-                        <DataTemplate x:DataType="m:Item">
-                            <Grid RowDefinitions="30,230" WidthRequest="200">
+                        <DataTemplate x:DataType="m:ItemBarang">
+                            <Grid RowDefinitions="30,180" WidthRequest="110">
                                 <Border Background="{StaticResource DarkBg2Brush}"
                                         Stroke="{StaticResource DarkBg2Brush}"
                                         StrokeThickness="1"
@@ -55,20 +57,19 @@
                                     <Border.StrokeShape>
                                         <RoundRectangle CornerRadius="16"/>
                                     </Border.StrokeShape>
-
-
                                 </Border>
+                                
                                 <VerticalStackLayout Grid.RowSpan="2" Margin="20,0,20,20"
                                                      VerticalOptions="End"
                                                      Spacing="6">
 
-                                    <Label Text="{Binding Title}" HorizontalOptions="Center" Style="{StaticResource Title2}" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding Price, StringFormat='${0}'}" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Nama}" TextColor="White" HorizontalOptions="Center" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding HargaJual, StringFormat='Rp.{0}'}" FontSize="Small" TextColor="White" HorizontalOptions="Center"/>
                                     <!--<Label Text="20 Bowls available" HorizontalOptions="Center" Style="{StaticResource Subhead}"/>-->
                                 </VerticalStackLayout>
                                 <Image
                                     Grid.RowSpan="2" VerticalOptions="Start"
-                                    Source="{Binding Image, FallbackValue=food_01.png}" HorizontalOptions="Center"/>
+                                    Source="soup.png" HorizontalOptions="Center"/>
                             </Grid>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
@@ -80,15 +81,15 @@
         </ScrollView>
 
         <VerticalStackLayout VerticalOptions="Center">
-            <Label Text="Main Menu" Style="{StaticResource LargeTitle}"/>
-            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
+            <Label Text="Main Menu" Style="{StaticResource LargeTitle}" TextColor="White"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}" TextColor="LightGray"/>
         </VerticalStackLayout>
 
         <Border
             HorizontalOptions="End"
-            Margin="0,0,24,0"
-            HeightRequest="48"
-            WidthRequest="300"
+            Margin="0,0,20,0"
+            HeightRequest="40"
+            WidthRequest="180"
             Background="{StaticResource DarkBg1Brush}"
             Stroke="{StaticResource SecondaryBrush}"
             StrokeThickness="1"
@@ -106,8 +107,8 @@
                        PlaceholderColor="{StaticResource TextSecondary}"
                        TextColor="White"
                        VerticalOptions="Center"
-                       WidthRequest="250"
-                       FontSize="14"/>
+                       WidthRequest="150"
+                       FontSize="10"/>
             </HorizontalStackLayout>
 
 
@@ -120,23 +121,15 @@
                      Margin="0,31,0,0"
                      VerticalOptions="Start"
             />
-            <HorizontalStackLayout Spacing="20"
+            <CollectionView 
                                RadioButtonGroup.GroupName="MenuCategories"
-                               RadioButtonGroup.SelectedValue="{Binding Category}"
-                                   
+                               ItemsLayout="HorizontalList"
+                                ItemsSource="{Binding Grups}"
                                    >
-                <BindableLayout.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Noodles</x:String>
-                        <x:String>Rice</x:String>
-                        <x:String>Appetizers</x:String>
-                        <x:String>Desserts</x:String>
-                        <x:String>Beverages</x:String>
-                    </x:Array>
-                </BindableLayout.ItemsSource>
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <RadioButton Content="{Binding .}" Value="{Binding .}">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="m:ItemGrup">
+                        <RadioButton Content="{Binding Grup}" Value="{Binding Grup}">
                             <RadioButton.ControlTemplate>
                                 <ControlTemplate>
                                     <Grid RowDefinitions="30,4">
@@ -171,7 +164,7 @@
                                                 </VisualStateGroup>
                                             </VisualStateGroupList>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Label Text="{TemplateBinding Content}" x:Name="TextLabel" />
+                                        <Label Text="{TemplateBinding Content}" x:Name="TextLabel" Margin="0,0,20,0"/>
                                         <BoxView x:Name="Indicator" Grid.Row="1" Color="Transparent"/>
                                     </Grid>
                                 </ControlTemplate>
@@ -179,9 +172,8 @@
                             </RadioButton.ControlTemplate>
                         </RadioButton>
                     </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </HorizontalStackLayout>
-
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </Grid>
 
