@@ -85,7 +85,7 @@
 
         <VerticalStackLayout VerticalOptions="Center">
             <Label Text="Dashboard" Style="{StaticResource LargeTitle}"/>
-            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, dd MMMM yyyy}'}"/>
         </VerticalStackLayout>
 
         <!-- Tab Control -->

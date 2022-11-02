@@ -48,7 +48,7 @@
                                        >
                     <BindableLayout.ItemTemplate>
                         <DataTemplate x:DataType="m:ItemBarang">
-                            <Grid RowDefinitions="30,180" WidthRequest="110">
+                            <Grid RowDefinitions="30,150" WidthRequest="110">
                                 <Border Background="{StaticResource DarkBg2Brush}"
                                         Stroke="{StaticResource DarkBg2Brush}"
                                         StrokeThickness="1"
@@ -59,17 +59,17 @@
                                     </Border.StrokeShape>
                                 </Border>
                                 
-                                <VerticalStackLayout Grid.RowSpan="2" Margin="20,0,20,20"
+                                <VerticalStackLayout Grid.RowSpan="2" Margin="10,0,10,20"
                                                      VerticalOptions="End"
                                                      Spacing="6">
 
-                                    <Label Text="{Binding Nama}" TextColor="White" HorizontalOptions="Center" FontSize="Small" HorizontalTextAlignment="Center"/>
-                                    <Label Text="{Binding HargaJual, StringFormat='Rp.{0}'}" FontSize="Small" TextColor="White" HorizontalOptions="Center"/>
+                                    <Label Text="{Binding Nama}" TextColor="White" HorizontalOptions="Center" FontSize="12" HorizontalTextAlignment="Center"/>
+                                    <Label Text="{Binding HargaJual, StringFormat='Rp.{0:C}'}" FontSize="12" TextColor="White" HorizontalOptions="Center"/>
                                     <!--<Label Text="20 Bowls available" HorizontalOptions="Center" Style="{StaticResource Subhead}"/>-->
                                 </VerticalStackLayout>
                                 <Image
                                     Grid.RowSpan="2" VerticalOptions="Start"
-                                    Source="soup.png" HorizontalOptions="Center"/>
+                                    Source="logo.svg" HorizontalOptions="Center"/>
                             </Grid>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
@@ -82,7 +82,7 @@
 
         <VerticalStackLayout VerticalOptions="Center">
             <Label Text="Main Menu" Style="{StaticResource LargeTitle}" TextColor="White"/>
-            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, MMMM dd yyyy}'}" TextColor="LightGray"/>
+            <Label Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat='{0:dddd, dd MMMM yyyy}'}" TextColor="LightGray"/>
         </VerticalStackLayout>
 
         <Border
@@ -98,15 +98,15 @@
                 <RoundRectangle CornerRadius="8"/>
             </Border.StrokeShape>
             <HorizontalStackLayout>
-                <Image Source="{FontImage Color=White, FontFamily=FontAwesome, Size=14}"
-                       Margin="14,0"
-                       VerticalOptions="Center"
-                       />
-                <Entry Background="Transparent"
+                <SearchBar Background="Transparent"
                        Placeholder="Search for food, coffee, etc."
                        PlaceholderColor="{StaticResource TextSecondary}"
                        TextColor="White"
+                       Text="{Binding Search, Mode=TwoWay}"
+                       SearchButtonPressed="SearchBar_SearchButtonPressed"
+                      
                        VerticalOptions="Center"
+                       
                        WidthRequest="150"
                        FontSize="10"/>
             </HorizontalStackLayout>
@@ -125,11 +125,15 @@
                                RadioButtonGroup.GroupName="MenuCategories"
                                ItemsLayout="HorizontalList"
                                 ItemsSource="{Binding Grups}"
+                                
                                    >
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="m:ItemGrup">
                         <RadioButton Content="{Binding Grup}" Value="{Binding Grup}">
+                            <RadioButton.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding Grup}" Tapped="TapGestureRecognizer_Tapped_1"/>
+                            </RadioButton.GestureRecognizers>
                             <RadioButton.ControlTemplate>
                                 <ControlTemplate>
                                     <Grid RowDefinitions="30,4">
@@ -164,7 +168,8 @@
                                                 </VisualStateGroup>
                                             </VisualStateGroupList>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Label Text="{TemplateBinding Content}" x:Name="TextLabel" Margin="0,0,20,0"/>
+                                        <Label Text="{TemplateBinding Content}" x:Name="TextLabel" Margin="0,0,20,0">
+                                        </Label>
                                         <BoxView x:Name="Indicator" Grid.Row="1" Color="Transparent"/>
                                     </Grid>
                                 </ControlTemplate>

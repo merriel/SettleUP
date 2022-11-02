@@ -18,10 +18,11 @@ public class Commons : INotifyPropertyChanged
         return _instance;
     }
 
+ public event PropertyChangedEventHandler PropertyChanged;
+
     private string _title;
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
+   
     public string Title
     {
         get { return _title; }
@@ -31,6 +32,19 @@ public class Commons : INotifyPropertyChanged
                 return;
             _title = value;
             OnPropertyChanged("Title");
+        }
+    }
+
+    private string _grup;
+    public string SelectedGrup
+    {
+        get { return _grup; }
+        set
+        {
+            if (_grup == value)
+                return;
+            _grup = value;
+            OnPropertyChanged("SelectedGrup");
         }
     }
 

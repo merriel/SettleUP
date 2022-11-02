@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Models;
+using MauiApp1.Pages.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
@@ -11,27 +12,115 @@ namespace MauiApp1.Pages;
 public partial class DashboardViewModel
 {
     [ObservableProperty]
-    ObservableCollection<Item> _products;
+    ObservableCollection<ItemBarang> _barang;
 
     [ObservableProperty]
     string category = ItemCategory.Noodles.ToString();
 
-    partial void OnCategoryChanged(string cat)
+    [ObservableProperty]
+    public ObservableCollection<ItemBarang> _tempbarang;
+
+    public void CategoryChanged(string cat)
     {
-        ItemCategory category = (ItemCategory)Enum.Parse(typeof(ItemCategory), cat);
-        _products = new ObservableCollection<Item>(
-            AppData.Items.Where(x => x.Category == category).ToList()
+        _barang= new ObservableCollection<ItemBarang>(_tempbarang.Where
+            (ItemBarang => ItemBarang.Grup.Contains(cat)).ToList()
         );
-        OnPropertyChanged(nameof(Products));
+        //Barang.Clear();
+        foreach (ItemBarang item in _barang.ToList())
+        {
+            Barang.Add(new ItemBarang
+            {
+                MasterBarang_ID = item.MasterBarang_ID,
+                Nama = item.Nama,
+                NamaLain = item.NamaLain,
+                Grup = item.Grup,
+                SubGrup = item.SubGrup,
+                Barcode = item.Barcode,
+                Satuan = item.Satuan,
+                MinimumStok = item.MinimumStok,
+                MaksimumStok = item.MaksimumStok,
+                ReTransaksiPoint = item.ReTransaksiPoint,
+                ToleranceSupplier = item.ToleranceSupplier,
+                HargaBeli = item.HargaBeli,
+                HargaBeliTerakhir = item.HargaBeliTerakhir,
+                HargaJual = item.HargaJual,
+                Warna = item.Warna,
+                StatusPaket = item.StatusPaket,
+                StatusAktif = item.StatusAktif,
+                StatusInventory = item.StatusInventory,
+                StatusOpenItem = item.StatusOpenItem,
+                StatusResep = item.StatusResep,
+                StatusJual = item.StatusJual,
+                StatusOutOfOrder = item.StatusOutOfOrder,
+                StatusPosisiStok = item.StatusPosisiStok
+            });
+
+        }
+
+        OnPropertyChanged(nameof(Barang));
     }
+
+    public void SearchChanged()
+    {
+        _barang = new ObservableCollection<ItemBarang>(_tempbarang.Where
+            (ItemBarang => ItemBarang.Nama.Contains(Search.ToUpper())).ToList()
+        );
+        //Barang.Clear();
+        foreach (ItemBarang item in _barang.ToList())
+        {
+            Barang.Add(new ItemBarang
+            {
+                MasterBarang_ID = item.MasterBarang_ID,
+                Nama = item.Nama,
+                NamaLain = item.NamaLain,
+                Grup = item.Grup,
+                SubGrup = item.SubGrup,
+                Barcode = item.Barcode,
+                Satuan = item.Satuan,
+                MinimumStok = item.MinimumStok,
+                MaksimumStok = item.MaksimumStok,
+                ReTransaksiPoint = item.ReTransaksiPoint,
+                ToleranceSupplier = item.ToleranceSupplier,
+                HargaBeli = item.HargaBeli,
+                HargaBeliTerakhir = item.HargaBeliTerakhir,
+                HargaJual = item.HargaJual,
+                Warna = item.Warna,
+                StatusPaket = item.StatusPaket,
+                StatusAktif = item.StatusAktif,
+                StatusInventory = item.StatusInventory,
+                StatusOpenItem = item.StatusOpenItem,
+                StatusResep = item.StatusResep,
+                StatusJual = item.StatusJual,
+                StatusOutOfOrder = item.StatusOutOfOrder,
+                StatusPosisiStok = item.StatusPosisiStok
+            });
+
+        }
+
+        OnPropertyChanged(nameof(Barang));
+    }
+
+    private string _search;
+    public string Search
+    {
+        get { return _search; }
+        set
+        {
+            if (_search== value)
+                return;
+            _search = value;
+            OnPropertyChanged("Search");
+        }
+    }
+
+    public Commons CommonData { get; private set; }
 
     public DashboardViewModel()
     {
-       get_grup();
+        CommonData = Commons.GetInstance();
+
+        get_grup();
        get_masterbarang();
-        _products = new ObservableCollection<Item>(
-            AppData.Items.Where(x => x.Category == ItemCategory.Noodles).ToList()
-        );
         
     }
     [ObservableProperty]
@@ -72,9 +161,7 @@ public partial class DashboardViewModel
             System.Diagnostics.Debug.WriteLine(e);
         }
     }
-
-    [ObservableProperty]
-    ObservableCollection<ItemBarang> _barang;
+  
     public async Task get_masterbarang()
     {
         try
@@ -117,7 +204,7 @@ public partial class DashboardViewModel
                         StatusOutOfOrder = item.StatusOutOfOrder,
                         StatusPosisiStok = item.StatusPosisiStok
                     });
-                    ///System.Diagnostics.Debug.WriteLine(item.Nama);
+                    _tempbarang = Barang;
                 }
             }
             else

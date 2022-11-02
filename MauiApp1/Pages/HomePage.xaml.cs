@@ -26,6 +26,7 @@ public partial class HomePage : ContentPage
     {
 		if (sender is BindableObject bo)
 			bo.BindingContext = this.BindingContext;
+
     }
 
 	

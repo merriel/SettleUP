@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using MauiApp1.Messages;
 using MauiApp1.Models;
 using System.Collections.ObjectModel;
+using static Android.Graphics.Paint;
 
 namespace MauiApp1.Pages;
 
@@ -51,5 +52,26 @@ public partial class DashboardPage : ContentPage
                 PageGrid.Children.Remove(view);
 
         }
+    }
+
+
+
+    private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+    {
+        var grupbutton = ((RadioButton)sender);
+        var selectedgrup = grupbutton.Content;
+        ((DashboardViewModel)this.BindingContext).CategoryChanged(selectedgrup.ToString());
+
+    }
+
+    private void Entry_Completed(object sender, EventArgs e)
+    {
+        
+    }
+
+    private void SearchBar_SearchButtonPressed(object sender, EventArgs e)
+    {
+      
+        ((DashboardViewModel)this.BindingContext).SearchChanged();
     }
 }
